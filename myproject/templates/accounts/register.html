@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+{% for message in messages %}
+<div class="container-fluid p-0">
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+    {{ message }}
+  </div>
+</div>
+{% endfor %}
+<!--Login-->
+<div class="container py-5">
+  <h1>Register</h1>
+  <form method="POST">
+    {% csrf_token %}
+    {{ register_form|crispy }}
+    <button class="btn btn-primary" type="submit">Register</button>
+  </form>
+  <p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
+</div>
+<script>
+  document.getElementById("id_username").classList.add("form-control");
+  document.getElementById("id_email").classList.add("form-control");
+  document.getElementById("id_password").classList.add("form-control");
+  document.getElementById("id_username").classList.add("form-control");
+  document.getElementById("id_first_name").classList.add("form-control");
+  document.getElementById("id_second_name").placeholder = "Username";
+  document.getElementById("id_email").placeholder = "E-mail";
+  document.getElementById("id_password").placeholder = "Password";
+  document.getElementById("id_username").type = "text";
+  document.getElementById("id_email").type = "email";
+  document.getElementById("id_first_name").type = "text";
+  document.getElementById("id_second_name").type = "text";
+  document.getElementById("id_password").type = "password";
+  document.getElementById("id_username").required = "required";
+  document.getElementById("id_email").required = "required";
+  document.getElementById("id_first_name").required = "required";
+  document.getElementById("id_second_name").required = "required";
+  document.getElementById("id_password").required = "required";
+</script>
+{% endblock %}

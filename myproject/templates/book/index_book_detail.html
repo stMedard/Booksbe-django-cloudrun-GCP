@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="card" style="width: 58rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ book.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">ID: {{ book.id }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Genre: {{ book.genre }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Author: {{ book.author }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Publish date: {{ book.date_of_publication|date }}</h6>
+            <a href="{% url 'generate-pdf' id=book.id  %}" class="btn btn-sm btn-success">Generate Pdf</a>
+            {% for chapter in chapter_list|dictsort:"id" %}
+            <h5>{{ chapter.title_chapter }}</h5>
+            <p>{{ chapter.content|safe |truncatewords:100 }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

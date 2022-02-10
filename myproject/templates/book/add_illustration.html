@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+{% for message in messages %}
+<div class="container-fluid p-0">
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+    {{ message }}
+  </div>
+</div>
+{% endfor %}
+<div class="container py-5">
+    <h1>Add illustration</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <p>{{formset.as_p}}</p>
+            <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+    </form>
+
+</div>
+<script>
+    document.getElementById("id_author_name").classList.add("form-control");
+    document.getElementById("id_author_name").placeholder = "Author name";
+    document.getElementById("id_author_name").type = "text";
+    document.getElementById("id_author_name").required = "required";
+    document.getElementById("id_title").classList.add("form-control");
+    document.getElementById("id_title").placeholder = "Title";
+    document.getElementById("id_title").type = "text";
+    document.getElementById("id_title").required = "required";
+    document.getElementById("id_image").className.add("form-control");
+    document.getElementById("id_author_name").required = "required";
+    document.getElementById("id_title").required = "required";
+    document.getElementById("id_image").required = "required";
+
+</script>
+{% endblock %}
